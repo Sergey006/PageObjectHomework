@@ -2,7 +2,6 @@ package products;
 
 public class Product {
     String name;
-    int price;
 
     public Product(String name) {
         this.name = name;
@@ -12,7 +11,5 @@ public class Product {
         return name;
     }
 
-    public int getPrice() {
-        return price;
-    }
+
 }

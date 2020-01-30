@@ -23,19 +23,21 @@ public class CartPage {
         this.driver = driver;
     }
 
-    public WebElement getPriceSumElement(){
+    public WebElement getPriceElementForSum(){
         return priceSum;
     }
-    public WebElement getPriceElementForProduct(String productName){
-        WebElement element = driver.findElement(By.xpath("//a[contains(text(),'" +
+    public WebElement getPriceElementForProduct(Product product){
+        String productName = product.getName();
+        return driver.findElement(By.xpath("//a[contains(text(),'" +
                 productName +
                 "')]/../../../..//span[@class='price__current']"));
-        return element;
     }
-    public void deleteProduct(String productName){
+    public void deleteProduct(Product product){
+        String productName = product.getName();
         driver.findElement(By.xpath("//a[contains(text(),'" + productName +"')]/../..//button[text()='Удалить']")).click();
     }
-    public void changeProductQuantity(String productName, int count){
+    public void changeProductQuantity(Product product, int count){
+        String productName = product.getName();
         WebElement element = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[contains(text(),'" +
                 productName +
                 "')]/../../../..//input[@class='count-buttons__input']"))));
@@ -47,7 +49,8 @@ public class CartPage {
     public void restoreDeletedProduct(){
         restoreButton.click();
     }
-    public boolean checkWarranty(String productName){
+    public boolean checkWarranty(Product product){
+        String productName = product.getName();
         return driver.findElement(By.xpath("//a[contains(text(),'" + productName +"')]/../..//span[contains(text(),'гарантия на 24 мес')]")).isDisplayed();
     }
 }
