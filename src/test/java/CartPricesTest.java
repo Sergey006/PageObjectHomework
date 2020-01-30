@@ -75,7 +75,7 @@ public class CartPricesTest extends BaseTest {
         Assert.assertEquals(pricePSWithWarranty*3, productPage.getCartPrice());
         //18
         cartPage.restoreDeletedProduct();
-        /*new WebDriverWait(driver, 5).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//span[@class='restore-last-removed']")));*/
+        new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(cartPage.getPriceElementForProduct(detroit)));
         Assert.assertEquals((pricePSWithWarranty*3) + gamePrice, formatPrice(cartPage.getPriceElementForSum()));
     }
 }
